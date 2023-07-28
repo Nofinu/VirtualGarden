@@ -1,5 +1,6 @@
 package org.example.service.impl;
 
+import org.example.Exception.AlreadyUseWateringTodayException;
 import org.example.Exception.WrongUserException;
 import org.example.entity.BotanicDetail;
 import org.example.entity.Plant;
@@ -9,6 +10,7 @@ import org.example.spi.port.BotanicDetailRepository;
 import org.example.spi.port.PlantRepository;
 import org.example.spi.port.UserRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,25 +69,33 @@ public class PlantServiceImpl implements PlantService {
     @Override
     public Plant watering(int plantId) {
         Plant plant = plantRepository.findById(plantId);
-        Double grow =Math.floor(Math.random() * ( 10 - 1 ));
 
-
-
-        return null;
+        if(plant.getLastWatering() == null || plant.getLastWatering().isBefore(LocalDate.now())){
+            int grow =(int) Math.floor(Math.random() * ( 11 - 1 ));
+            plant.setGrowProgression(plant.getGrowProgression()+grow);
+            plant.setLastWatering(LocalDate.now());
+            if(plant.getGrowProgression()>=100){
+                plant.setGrowProgression(plant.getGrowProgression()-100);
+                plant.setPlantLevel(plant.getPlantLevel()+1);
+            }
+            return plantRepository.save(plant);
+        }
+        throw new AlreadyUseWateringTodayException();
     }
 
     @Override
     public Plant findById(int plantId) {
-        return null;
+        return plantRepository.findById(plantId);
     }
 
     @Override
     public List<Plant> findByUserId(int userId) {
-        return null;
+        User user = userRepository.findById(userId);
+        return plantRepository.findByUserId(user);
     }
 
     @Override
     public List<Plant> findAll() {
-        return null;
+        return plantRepository.findAll();
     }
 }
