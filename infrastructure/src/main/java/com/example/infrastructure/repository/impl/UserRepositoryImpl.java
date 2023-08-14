@@ -34,4 +34,13 @@ public class UserRepositoryImpl implements UserRepository {
         }
         throw new NotFoundException();
     }
+
+    @Override
+    public User findByUsername(String username) {
+        UserEntity userEntity = userEntityRepository.findByUsername(username);
+        if(userEntity != null){
+            return modelMapper.map(userEntity, User.class);
+        }
+        throw new NotFoundException();
+    }
 }
