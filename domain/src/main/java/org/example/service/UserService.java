@@ -6,8 +6,6 @@ import org.example.entity.User;
 import java.util.List;
 
 public interface UserService {
-    User create (String username, String password);
-    User findById(int userId);
-    User findByUsername(String username);
-
+    User save (String username, String password);
+    User findByUsername (String username);
 }
