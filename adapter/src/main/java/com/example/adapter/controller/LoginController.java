@@ -16,12 +16,12 @@ public class LoginController {
 
     private final UserService userService;
 
-    public LoginController(UserRepository userRepository){
-        this.userService = new UserServiceImpl(userRepository);
+    public LoginController(UserService userService){
+        this.userService = userService;
     }
 
-    @PostMapping("/register")
-    public ResponseEntity<String> register (@RequestBody User user){
-
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<String> register (@RequestBody User user){
+//
+//    }
 }

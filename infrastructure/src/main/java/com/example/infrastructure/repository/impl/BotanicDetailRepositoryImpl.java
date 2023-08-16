@@ -6,11 +6,13 @@ import com.example.infrastructure.repository.BotanicDetailsEntityRepository;
 import org.example.entity.BotanicDetail;
 import org.example.spi.port.BotanicDetailRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class BotanicDetailRepositoryImpl implements BotanicDetailRepository {
 
     private final BotanicDetailsEntityRepository botanicDetailsEntityRepository;

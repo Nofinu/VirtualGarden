@@ -10,11 +10,13 @@ import org.example.entity.Plant;
 import org.example.entity.User;
 import org.example.spi.port.PlantRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class PlantRepositoryImpl implements PlantRepository {
 
     private final PlantEntityRepository plantEntityRepository;

@@ -6,9 +6,11 @@ import com.example.infrastructure.repository.UserEntityRepository;
 import org.example.entity.User;
 import org.example.spi.port.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     private final UserEntityRepository userEntityRepository;
